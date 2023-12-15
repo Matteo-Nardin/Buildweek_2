@@ -16,11 +16,17 @@
     border-radius: 2px;
 }
 
-.bg-custom{
-    width: 90%;
+.custom{
     background: rgb(185,185,185);
     background: linear-gradient(200deg, rgba(185,185,185,1) 1%, rgba(0,0,0,1) 81%);
 }
+#w-custom{
+    width:90%;
+}
+// position: sticky;
+// z-index: 2;
+// opacity: 50%;
+// top: 0;
 
 
 .progress{ 
