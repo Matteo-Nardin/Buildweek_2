@@ -1,7 +1,14 @@
 
 
-if (location.pathname.split('/').pop() === 'index.html' ) {
-    (saluto = () => {
+
+
+if (location.pathname.split('/').pop() == 'index.html') {
+    document.addEventListener('DOMContentLoaded', () =>  {
+        document.querySelector(".saluto").innerText = saluto();
+    });
+    // Aggiungiamo il saluto a un elemento <h2> con id "saluto" (possiamo modificare anche dopo)
+   
+    saluto = () => {  
         // Otteniamo l'ora corrente con il metodo date
         let oraCorrente = new Date().getHours();
 
@@ -10,42 +17,77 @@ if (location.pathname.split('/').pop() === 'index.html' ) {
 
         //condizione per verificare l'ora corrente e messaggio da stampare
         if (oraCorrente >= 4 && oraCorrente < 13) {
-            saluto = "Buongiorno";
+            return "Buongiorno";
         } else if (oraCorrente >= 13 && oraCorrente < 18) {
-            saluto = "Buon pomeriggio";
+            return "Buon pomeriggio";
         } else {
-            saluto = "Buona sera";
+            return "Buona sera";
         }
-
-        // Aggiungiamo il saluto a un elemento <h2> con id "saluto" (possiamo modificare anche dopo)
-        const elementoSaluto = document.querySelector("saluto");
-        if (elementoSaluto) {
-            elementoSaluto.textContent = saluto;
-        } else {
-            console.log("Elemento h2 non trovato.");
-        }
-    })();
+    }
 }
 
+       
+       
 
+if (location.pathname.split('/').pop() == 'henry.html') {
+    document.addEventListener('DOMContentLoaded', () =>  {
+        showAlbum(75621062);
+        document.querySelector('.blah .bi-play-circle').addEventListener('click', () => {
+            document.querySelector('.blah .bi-pause-circle').classList.remove('d-md-none');
+            document.querySelector('.blah .bi-play-circle').classList.add('d-md-none');
+        });
+            
+        document.querySelector('.blah .bi-pause-circle').addEventListener('click', () => { 
+            document.querySelector('.blah .bi-pause-circle').classList.add('d-md-none');
+            document.querySelector('.blah .bi-play-circle').classList.remove('d-md-none');
+        });
+        document.querySelector('.blah .bi-heart-fill').addEventListener('click', () => { 
+            document.querySelector('.blah .bi-heart-fill').classList.toggle('text-danger');
+        });
+        document.querySelector('.blah .bi-arrow-down-circle').addEventListener('click', () => { 
+            document.querySelector('.blah .bi-arrow-down-circle').classList.toggle('text-success');
+        });
+    });
+    
+}
 
-
-
-fetch('https://striveschool-api.herokuapp.com/api/deezer/search?q=viola(feat. Salmo)', {method: 'GET'})
-.then(response => response.json())
-.then(json => {
-    console.log(json);
-    let album = `
-    <img src="${json.data[0].album.cover}" class="img-fluid">
-    </div>
-    <div class="col-auto col-md-8 mt-4">
-        <p class="d-none d-md-block ">ALBUM</p>
-        <h1 class="fw-bolder">T</h1>
-        <div class="d-flex flex-md-column" >
-            <p> <img class="rounded-circle pe-3 align-self-center" src="" alt="">nome artista ·</p>
-            <p> anno · num brani,<span class="text-white-50"> min 20 sec. </span>
+showAlbum = async (albumId) => {
+    let url = `https://striveschool-api.herokuapp.com/api/deezer/album/${albumId}`
+    try { 
+        const response = await fetch(url, {method: 'GET'})
+        const res = await response.json();
+        console.log(res);
+        document.querySelector('.albumArea').innerHTML = '';
+        let album = `
+        <div class='col-12 col-md-4 m-md-0'>
+            <img src="${res.cover_xl}" alt='${res.title_short} album cover photo' class="w-100 h-100">
         </div>
-    </div>`    
-    })
-    .catch(console.error());
+        <div class="col-12 col-md-8 mt-5 pt-5 d-flex flex-column">
+            <p class="d-none d-md-block ">${res.type.toUpperCase()}</p>
+            <h1 class="fw-bolder mb-5">${res.title}</h1>
+            <div class="d-flex flex-column flex-md-row align-items-baseline justify-self-bottom" >
+                <p> <img class="rounded-circle pe-3 w-50" src="${res.artist.picture_small}" alt="${res.artist.name}'s picture">${res.artist.name} ·</p>
+                <p> ${res.release_date.slice(0, 4)} · ${res.nb_tracks} brani,<span class="text-white-50"> ${Math.floor(res.duration/60)} min ${res.duration % 60} sec. </span>
+            </div>
+        </div>`    
+        document.querySelector('.albumArea').innerHTML += album;
+        document.querySelector('.tracklist').innerHTML ='';
+        res.tracks.data.forEach((brano, i) => {
+            let tracklist =  ` 
+            <div class="d-none d-md-block col-md-1 text-center"> ${i+1} </div>
+            <div class="col-11 col-md-5">
+                <p class="m-0 fw-bold">${brano.title}</p>
+                <p class="text-white-50 m-0">${brano.artist.name}</p>
+            </div>
+            <div class="d-none d-md-block col-md-3 text-end">${brano.rank}</div>
+            <div class="d-none d-md-block col-md-3 text-end"> ${Math.floor(brano.duration/60)} min ${brano.duration % 60} sec. </div>
+            <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" class="col-1 d-md-none text-end"><i class="bi bi-three-dots-vertical"></i></a>`
+            document.querySelector('.tracklist').innerHTML += tracklist;
+        });
+        
+        
+    } catch(error) {
+        console.error(error);
+    }
+}
 
