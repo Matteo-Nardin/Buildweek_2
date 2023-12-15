@@ -24,8 +24,30 @@
 }
 
 .heart {
-  background: linear-gradient(to right, red, yellow);
+  background: linear-gradient(to bottom right, #4226a7, rgba(161, 157, 173, 0.368627451));
   padding: 6px;
+  border-radius: 2px;
+}
+
+.plus {
+  background: #8d8d8d;
+  padding: 6px;
+  border-radius: 2px;
+}
+
+.bookmark {
+  background: #007800;
+  padding: 6px;
+  border-radius: 2px;
+}
+
+.custom {
+  background: rgb(185, 185, 185);
+  background: linear-gradient(200deg, rgb(185, 185, 185) 1%, rgb(0, 0, 0) 81%);
+}
+
+#w-custom {
+  width: 90%;
 }
 
 .progress.w-100 {
@@ -33,7 +55,6 @@
 }
 
 .corpo-centrale {
-  display: grid;
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 1;
