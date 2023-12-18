@@ -47,8 +47,14 @@ if (location.pathname.split('/').pop() == 'henry.html') {
         document.querySelector('.blah .bi-arrow-down-circle').addEventListener('click', () => { 
             document.querySelector('.blah .bi-arrow-down-circle').classList.toggle('text-success');
         });
+        
     });
     
+}
+
+
+if (location.pathname.split('/').pop() == 'artist.html') {
+
 }
 
 showAlbum = async (albumId) => {
@@ -57,7 +63,7 @@ showAlbum = async (albumId) => {
         const response = await fetch(url, {method: 'GET'})
         const res = await response.json();
         console.log(res);
-        document.querySelector('.albumArea').innerHTML = '';
+        document.querySelector('.albumNameArea').innerHTML = '';
         let album = `
         <div class='col-12 col-md-4 m-md-0'>
             <img src="${res.cover_xl}" alt='${res.title_short} album cover photo' class="w-100 h-100">
@@ -66,14 +72,14 @@ showAlbum = async (albumId) => {
             <p class="d-none d-md-block ">${res.type.toUpperCase()}</p>
             <h1 class="fw-bolder mb-5">${res.title}</h1>
             <div class="d-flex flex-column flex-md-row align-items-baseline justify-self-bottom" >
-                <p> <img class="rounded-circle pe-3 w-50" src="${res.artist.picture_small}" alt="${res.artist.name}'s picture">${res.artist.name} ·</p>
-                <p> ${res.release_date.slice(0, 4)} · ${res.nb_tracks} brani,<span class="text-white-50"> ${Math.floor(res.duration/60)} min ${res.duration % 60} sec. </span>
+                <p> <img class="rounded-circle me-3" width="50px" height="50px" src="${res.artist.picture_small}" alt="${res.artist.name}'s picture">${res.artist.name}</p>
+                <p>· ${res.release_date.slice(0, 4)} · ${res.nb_tracks} brani,<span class="text-white-50"> ${Math.floor(res.duration/60)} min ${res.duration % 60} sec. </span>
             </div>
         </div>`    
-        document.querySelector('.albumArea').innerHTML += album;
+        document.querySelector('.albumNameArea').innerHTML += album;
         document.querySelector('.tracklist').innerHTML ='';
         res.tracks.data.forEach((brano, i) => {
-            let tracklist =  ` 
+            let track =  ` 
             <div class="d-none d-md-block col-md-1 text-center"> ${i+1} </div>
             <div class="col-11 col-md-5">
                 <p class="m-0 fw-bold">${brano.title}</p>
@@ -82,12 +88,17 @@ showAlbum = async (albumId) => {
             <div class="d-none d-md-block col-md-3 text-end">${brano.rank}</div>
             <div class="d-none d-md-block col-md-3 text-end"> ${Math.floor(brano.duration/60)} min ${brano.duration % 60} sec. </div>
             <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" class="col-1 d-md-none text-end"><i class="bi bi-three-dots-vertical"></i></a>`
-            document.querySelector('.tracklist').innerHTML += tracklist;
+            document.querySelector('.tracklist').innerHTML += track;
         });
-        
+        document.querySelector('.albumArea').addEventListener('click', (e) => {
+            if (e.target.innerText == res.artist.name) {
+                location.href = 'artists.html?artistId='+ res.artist.id;
+            }
+        })
         
     } catch(error) {
         console.error(error);
     }
+    
 }
 
