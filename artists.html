@@ -1,12 +1,270 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
-    <style src="assets/css/style.css"></style>
+    <title>Artist Page</title>
+    <link rel="stylesheet" href="assets/css/style.css"></link>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <script src="assets/js/henry.js"></script>
 </head>
 <body>
+    <div class="container-fluid" style="height: 100vh;">
+        <div class="row">
+            <div class="col-md-3 d-none d-lg-flex flex-column bg-black">
+                <i class="bi bi-three-dots"></i>
+
+                <div class="mb-5">
+                    <div>
+                        <a><i class="bi bi-house-door-fill pe-3"></i>Home</a>
+                    </div>
+                    <div>
+                        <a><i class="bi bi-search pe-3"></i>Cerca</a>
+                    </div>
+                    <div>
+                        <a><i class="bi bi-bookshelf pe-3"></i>La tua libreria</a>
+                    </div>
+                </div>
+
+                <div>
+                    <div>
+                        <a><i class="bi bi-plus-square-fill"></i>Crea playlist</a>
+                    </div>
+                    <div>
+                        <a><i class="bi bi-heart-fill fs-10 heart"></i>Brani che ti piacciono</a>
+                    </div>
+                    <div>
+                        <a><i class="bi bi-bookmark-fill"></i>I tuoi episodi</a>
+                    </div>
+                </div>
+                
+
+                <div class="overflow-y-scroll bg-black" style="height: 58vh">
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deleniti provident, rerum et aliquid at fugiat iste eius. Vero dolore unde explicabo maiores quam consequuntur consequatur nam dolores facilis, ea earum.</p>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deleniti provident, rerum et aliquid at fugiat iste eius. Vero dolore unde explicabo maiores quam consequuntur consequatur nam dolores facilis, ea earum.</p>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deleniti provident, rerum et aliquid at fugiat iste eius. Vero dolore unde explicabo maiores quam consequuntur consequatur nam dolores facilis, ea earum.</p>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deleniti provident, rerum et aliquid at fugiat iste eius. Vero dolore unde explicabo maiores quam consequuntur consequatur nam dolores facilis, ea earum.</p>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deleniti provident, rerum et aliquid at fugiat iste eius. Vero dolore unde explicabo maiores quam consequuntur consequatur nam dolores facilis, ea earum.</p>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deleniti provident, rerum et aliquid at fugiat iste eius. Vero dolore unde explicabo maiores quam consequuntur consequatur nam dolores facilis, ea earum.</p>
+                </div>
+            </div>
     
+
+    
+   
+       
+            
+        
+   
+    
+            <!-- -------------------COLONNA CENTRALE--------------------------------- -->
+                
+            <div class="col-lg-7 overflow-y-scroll p-0 px-md-3 pt-md-2 position-relative" style="height: 100vh;">
+                <nav class="navbar navbar-expand-lg bg-transparent position-sticky top-0 z-0 d-none d-md-block">
+                    <div class="container-fluid">
+                        <div>
+                            <a class="navbar-brand" href="#"><i class="bi bi-chevron-left text-white-50 bg-black rounded-circle px-2 py-1"></i></a>
+                            <a class="navbar-brand" href="#"><i class="bi bi-chevron-right text-white-50 bg-black rounded-circle px-2 py-1"></i></a>
+                        </div>
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown"> 
+                                <a class="nav-link dropdown-toggle rounded-5 bg-black p-0 pe-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="assets/imgs/main/image-3.jpg" alt="pfp" class="rounded-5" style="height: 50px; width: 50px;" >
+                                    Giussepe Longitudinale
+                                </a>
+                                <ul class="dropdown-menu bg-dark">
+                                    <li><a class="dropdown-item text-white-50" href="#">Action</a></li>
+                                    <li><a class="dropdown-item text-white-50" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item text-white-50" href="#">Something else here</a></li>
+                                </ul>
+                            </li>   
+                        </ul>
+                    </div>
+                </nav>
+                    <div class="artistNameArea card text-bg-dark">
+                        <img src="assets/imgs/main/image-12.jpg" height="600px" class="card-img rounded-0" alt="...">
+                        <div class="card-img-overlay d-flex flex-column justify-content-between">
+                            <div>
+                                <i class="bi bi-arrow-left px-2 d-md-none fs-2 bg-body-tertiary bg-opacity-50 rounded-circle"></i>
+                            </div>
+                            <div>
+                                <p class="m-0 d-none d-md-block"><i class="text-primary bi bi-patch-check-fill"></i> Artista verificato</p>
+                                <h5 class="card-title h1 fw-bolder">Artist name</h5>
+                                <p class="card-text d-none d-md-block">9999999 ascoltatori mensili</p>
+                            </div>
+                        </div>
+                    </div>
+                <div class="p-3 bg-gradient songsArea">
+                    <p class="card-text d-md-none text-white-50 d-inline other">9999999 </p><span class="d-md-none"> ascoltatori mensili</span>
+                    <div class="d-flex justify-content-between justify-content-md-start align-items-center">
+                        <div class="d-flex align-items-baseline">
+                            <button class="btn text-white fw-bold me-5" type="button" onclick="(document.querySelector('div > p + div button').innerText =='Segui')?(document.querySelector('div > p + div button').innerText=='Seguiti'):(document.querySelector('div > p + div button').innerText == 'Segui')">FOLLOW</button>
+                            <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" class="d-none d-md-inline"><i class="bi bi-three-dots"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item text-white-50" href="#">Action</a></li>
+                                <li><a class="dropdown-item text-white-50" href="#">Another action</a></li>
+                                <li><a class="dropdown-item text-white-50" href="#">Something else here</a></li>
+                            </ul>
+                            <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" class="d-md-none"><i class="bi bi-three-dots-vertical me-auto"></i></a>
+                        </div>
+                        <div class="order-md-first d-flex align-items-center">
+                            <i class="bi bi-shuffle me-3 fs-3 d-md-none"></i>
+                            <i class="bi bi-play-circle-fill me-md-5 fs-1"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-5 order-md-last my-5 my-md-0">
+                            <h4 class=" fw-bold d-none d-md-block mb-5"> Brani che ti piacciono</h4>
+                            <div class="d-flex align-items-center">
+                                <div class="rounded-circle me-2 position-relative" style="height: 70px; width: 70px;">
+                                    <img class="rounded-circle w-100 pfp" src="assets/imgs/main/image-11.jpg" alt="" >
+                                        <span class="position-absolute end-0 top-100 translate-middle"><i class="bi bi-heart-fill"></i></span>
+                                    </button>
+                                </div>
+                                <div>
+                                    <p class="fw-bold m-0"> Hai messo mi piace a</p>
+                                    <p class="text-white-50"> 12 brani di artist name</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-7">
+                            <h4 class=" fw-bold mb-3" > Popolari</h4>
+                            <div class="row align-items-center popolari g-3" style="height: 310px; overflow: hidden;">
+                                <ul class="dropdown-menu bg-body w-25">
+                                    <li><a class="dropdown-item text-white-50" href="#">Action2</a></li>
+                                    <li><a class="dropdown-item text-white-50" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item text-white-50" href="#">Something else here</a></li>
+                                </ul>
+                                <!-- <div class="col-11 col-md-6 d-flex align-items-center">
+                                    <p class="me-3">1</p>
+                                    <img src="assets/imgs/main/image-4.jpg" alt="" height="50px" width="50px">
+                                    <div class="ms-3 ">
+                                        <p class="m-0">nome brano</p>
+                                        <p class="m-0 text-white-50 d-md-none "> 103.467.533</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 d-none d-md-block text-white-50">2894723837</div>
+                                <div class="col-md-3 d-none d-md-block text-center text-white-50">2:98</div>
+                                <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" class="col-1 d-md-none text-end"><i class="bi bi-three-dots-vertical "></i></a> -->
+                            </div>
+                        </div>
+                    </div>
+                    <p class="fw-bold text-uppercase text-white-50 more">visualizza altro</p>
+                </div>
+            </div>
+                <!-- ---------------TERZA COLONNA--------------- -->
+                <div class="d-none d-lg-flex flex-column col-md-2 bg-black">
+                    <div class="d-flex justify-content-between p-2">
+                        <p>Attività amici</p>
+                        <div>
+                            <i class="bi bi-person-plus"></i>
+                            <i class="bi bi-x"></i>
+                        </div>
+                    </div>
+
+                    <!-- -----------BOX AMICI-------------- -->
+                    <div class="d-flex ">
+                        <div>
+                            <img src="assets/imgs/search/image-1.jpeg" class="img-fluid" width="20px">
+                        </div>
+                        <div class="flex-column p-2 fs-8">
+                            <p class="mb-0 fs-6">Nome Canzone</p>
+                            <p class="mb-0">nome artista</p>
+                            <i class="bi bi-music-note-beamed me-2"></i><span>Nome artista</span> 
+                        </div>
+                        <p class="fs-8">4 ore</p>
+                    </div>
+                    <div class="d-flex">
+                        <div>
+                            <img src="assets/imgs/search/image-1.jpeg" class="img-fluid" width="20px">
+                        </div>
+                        <div class="flex-column p-2 fs-8">
+                            <p class="mb-0 fs-6">Nome Canzone</p>
+                            <p class="mb-0">nome artista</p>
+                            <i class="bi bi-music-note-beamed me-2"></i><span>Nome artista</span> 
+                        </div>
+                        <p class="fs-8">4 ore</p>
+                    </div>
+                    <div class="d-flex">
+                        <div>
+                            <img src="assets/imgs/search/image-1.jpeg" class="img-fluid" width="20px">
+                        </div>
+                        <div class="flex-column p-2 fs-8">
+                            <p class="mb-0 fs-6">Nome Canzone</p>
+                            <p class="mb-0">nome artista</p>
+                            <i class="bi bi-music-note-beamed me-2"></i><span>Nome artista</span> 
+                        </div>
+                        <p class="fs-8">4 ore</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+    <!-- -------------------PLAY BAR INFERIORE--------------------------- -->
+    <div class="row fixed-bottom align-items-center bg-secondary-subtle container-fluid d-none">
+        <div class="col-sm-3">
+            <div class="d-flex align-items-center">
+                    <div class="p-3">
+                        <img src="assets/imgs/search/image-1.jpeg" class="img-fluid" width="60px" height="50px">
+                    </div>
+                    <div class="flex-column p-2">
+                        <p class="m-0">Nome Canzone</p>
+                        <p class="m-0">nome artista</p>
+                    </div>
+                <i class="bi bi-heart p-2"></i>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="text-white align-items-center d-flex justify-content-center fs-3">
+                <i class="bi bi-shuffle mx-1"></i>
+                <i class="bi bi-skip-start-fill mx-1"></i>
+                <i class="bi bi-play-circle-fill mx-1 fs-1"></i>
+                <i class="bi bi-skip-end-fill mx-1"></i>
+                <i class="bi bi-repeat mx-1"></i>
+            </div>
+
+            <div class="progress-block mb-1 text-white d-flex justify-content-between align-items-center">
+                <div class="mr-2">0:00</div>
+                <div class="progress w-100">
+                <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" class="progress-bar bg-success" role="progressbar" style="width: 25%"></div>
+                </div>
+                <div class="mr-2">2:59</div>
+            </div>
+
+            
+        </div>
+
+        <div class="col-sm-3">
+            <div class="d-flex justify-content-end p-2">
+                <i class="bi bi-mic-fill mx-1"></i>
+                <i class="bi bi-menu-app mx-1"></i>
+                <i class="bi bi-pc-display mx-1"></i>
+                <i class="bi bi-volume-down mx-1"></i>
+                <!-- barra -->
+                <div class="progress-block mt-1 text-white d-flex justify-content-between align-items-center w-50">
+
+                    <div class="progress w-100">
+                    <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" class="progress-bar bg-success" role="progressbar"></div>
+                    </div>
+                </div>
+
+                <i class="bi bi-arrows-angle-expand mx-1"></i>
+            </div>
+        </div>
+    </div>  
+    </div>
+    <div class="d-flex justify-content-evenly d-md-none position-sticky bottom-0 z-0 bg-black bg-gradient">
+        <a><i class="bi bi-house-door-fill pe-3 d-block text-center"></i>Home</a>
+        <a><i class="bi bi-search pe-3 d-block text-center"></i>Cerca</a>
+        <a><i class="bi bi-bookshelf pe-3 d-block text-center"></i>La tua libreria</a>
+    </div>
+
+
+<script src="../../bootstrap-5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+        
 </body>
 </html>
