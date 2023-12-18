@@ -21,17 +21,31 @@ $success: #1ed760;
 
 .custom{
     background: rgb(185,185,185);
-    background: linear-gradient(200deg, rgba(185,185,185,1) 1%, rgba(0,0,0,1) 81%);
+    background: linear-gradient(192deg, rgb(91 91 91 / 98%) 1%, rgb(0, 0, 0) 53%);
 }
 #w-custom{
     width:90%;
 }
-// position: sticky;
-// z-index: 2;
-// opacity: 50%;
-// top: 0;
-
-
+// --------------scroll bar-----------
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px transparent; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #808080; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #717171; 
+  }
+// --------------------------------
 .progress{ 
     &.w-100{
         height: 1px
