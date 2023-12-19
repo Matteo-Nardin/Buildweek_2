@@ -3,10 +3,241 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
-    <style src="assets/css/style.css"></style>
+    <title>Album</title>
+    <link rel="stylesheet" href="assets/css/style.css"></link>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <script src="assets/js/henry.js"></script>
 </head>
 <body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 d-flex flex-column bg-black text-white-50 d-none d-sm-block">
+                <i class="bi bi-three-dots"></i>
+
+                <div class="mb-5">
+                    <div class="mb-2">
+                        <a><i class="bi bi-house-door-fill fs-5 me-3"></i>Home</a>
+                    </div>
+                    <div class="mb-2">
+                        <a id="searchAnchor"><i class="bi bi-search fs-5 me-3"></i>Cerca</a>
+                    </div>
+                    <div class="mb-2">
+                        <a><i class="bi bi-bookshelf fs-5 me-3"></i>La tua libreria</a>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="mb-2">
+                        <a><i class="bi bi-plus-lg fs-10 me-3 plus playlist"></i>Crea playlist</a>
+                    </div>
+                    <div class="mb-2">
+                        <a><i class="bi bi-heart-fill fs-10 me-3 heart"></i>Brani che ti piacciono</a>
+                    </div>
+                    <div class="mb-2">
+                        <a><i class="bi bi-bookmark-fill fs-10 me-3 bookmark"></i>I tuoi episodi</a>
+                    </div>
+                </div>
+                
+                <hr>
+
+                <div class="overflow-y-scroll bg-black fs-10 appendino" style="height: 43vh">
+                    <p>Playlist 1</p>
+                    <p>Playlist 2</p>
+                    <p>Playlist 3</p>
+                    <p>Playlist 4</p>
+                    <p>Playlist 5</p>
+                    <p>Playlist 6</p>
+                    <p>Playlist 7</p>
+                    <p>Playlist 8</p>
+                    <p>Playlist 9</p>
+                    <p>Playlist 10</p>
+                    <p>Playlist 11</p>
+                    <p>Playlist 12</p>
+                    <p>Playlist 13</p>
+                    <p>Playlist 14</p>
+                </div>
+            </div>
+
+
+            <div class="col-sm-9 col-md-7 bg-dark text-white-50 p-0">
+                
+                <!-- ------------------------CORPO CENTRALE--------------------------- -->
+
+                <div class="overflow-y-scroll bg-dark position-relative albumArea" style="height: 86svh;">
+                    <nav class="navbar navbar-expand-lg bg-transparent position-sticky top-0 z-1 d-none d-sm-block">
+                        <div class="container-fluid">
+                            <div>
+                                <a class="navbar-brand" href="#"><i class="bi bi-chevron-left text-white-50 bg-black rounded-circle px-2 py-1"></i></a>
+                                <a class="navbar-brand" href="#"><i class="bi bi-chevron-right text-white-50 bg-black rounded-circle px-2 py-1"></i></a>
+                            </div>
+                            <ul class="navbar-nav">
+                                <li class="nav-item dropdown"> 
+                                    <a class="nav-link dropdown-toggle rounded-5 bg-black text-white p-0 pe-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <img src="assets/imgs/main/image-3.jpg" alt="pfp" class="rounded-5" style="height: 50px; width: 50px;" >
+                                        Giussepe Longitudinale
+                                    </a>
+                                    <ul class="dropdown-menu bg-dark">
+                                        <li><a class="dropdown-item text-white-50" href="#">Action</a></li>
+                                        <li><a class="dropdown-item text-white-50" href="#">Another action</a></li>
+                                        <li><a class="dropdown-item text-white-50" href="#">Something else here</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <div class="albumNameArea row py-3">
+                    </div>
+                    <div class="d-flex my-3 fs-3 blah align-items-center">
+                        
+                            <i class="bi bi-heart-fill px-1 px-md-3"></i>
+                            <i class="bi bi-arrow-down-circle px-1 pe-md-3"></i>
     
+                            <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" class="d-none d-md-inline"><i class="bi bi-three-dots"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item text-white-50" href="#">Action1</a></li>
+                                <li><a class="dropdown-item text-white-50" href="#">Another action</a></li>
+                                <li><a class="dropdown-item text-white-50" href="#">Something else here</a></li>
+                            </ul>
+                            <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" class="d-md-none"><i class="bi bi-three-dots-vertical me-auto"></i></a>
+                        
+                        
+                            <i class="bi bi-shuffle ms-auto d-md-none pe-1 fs-2"></i>
+                            <i class="bi bi-play-circle order-md-first fs-1"></i>
+                            <i class="bi bi-pause-circle order-md-first d-none fs-1"></i>
+                        
+                    </div>
+                    <div class="pe-md-5">
+                        <div class="row d-none d-md-flex mb-5 border-bottom border-opacity-25 pb-2">
+                          <div class="col-md-1 text-center">
+                            #
+                          </div>
+                          <div class="col-md-5 ">
+                            TITOLO
+                          </div>
+                          <div class="col-md-3 text-end">
+                            RIPRODUZIONI
+                          </div>
+                          <div class="col-md-3 text-end">
+                            <i class="bi bi-clock"></i>
+                          </div>
+                        </div>
+                        <div class="row align-items-center g-3 songsArea">
+                            <ul class="dropdown-menu bg-body w-25">
+                                <li><a class="dropdown-item text-white-50" href="#">Action2</a></li>
+                                <li><a class="dropdown-item text-white-50" href="#">Another action</a></li>
+                                <li><a class="dropdown-item text-white-50" href="#">Something else here</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+        
+
+            </div>
+                            <!-- ---------------TERZA COLONNA--------------- -->
+            <div class="col-md-2 d-md-flex d-none flex-column bg-black text-white-50">
+                <div class="d-flex justify-content-between p-2">
+                    <p class="text-white">Attività amici</p>
+                    <div>
+                        <i class="bi bi-person-plus"></i>
+                        <i class="bi bi-x"></i>
+                    </div>
+                </div>
+
+                <!-- -----------BOX AMICI-------------- -->
+                <div class="d-flex my-2">
+                    <div>
+                        <img src="assets/imgs/search/image-1.jpeg" class="img-fluid rounded-circle" width="40px">
+                    </div>
+                    <div class="flex-column px-2 fs-10">
+                        <p class="mb-0 fs-8">Nome Canzone</p>
+                        <p class="mb-0">nome artista</p>
+                        <i class="bi bi-music-note-beamed me-2"></i><span>Nome artista</span> 
+                    </div>
+                    <p class="fs-10">4 ore</p>
+                </div>
+                <div class="d-flex my-2">
+                    <div>
+                        <img src="assets/imgs/search/image-1.jpeg" class="img-fluid rounded-circle" width="40px">
+                    </div>
+                    <div class="flex-column px-2 fs-10">
+                        <p class="mb-0 fs-8">Nome Canzone</p>
+                        <p class="mb-0">nome artista</p>
+                        <i class="bi bi-music-note-beamed me-2"></i><span>Nome artista</span> 
+                    </div>
+                    <p class="fs-10">4 ore</p>
+                </div>
+                <div class="d-flex my-2">
+                    <div>
+                        <img src="assets/imgs/search/image-1.jpeg" class="img-fluid rounded-circle" width="40px">
+                    </div>
+                    <div class="flex-column px-2 fs-10">
+                        <p class="mb-0 fs-8">Nome Canzone</p>
+                        <p class="mb-0">nome artista</p>
+                        <i class="bi bi-music-note-beamed me-2"></i><span>Nome artista</span> 
+                    </div>
+                    <p class="fs-10">4 ore</p>
+                </div>
+            </div>
+            </div>
+
+
+
+            <div class="d-none d-sm-block">
+                <div class="row align-items-center bg-dark text-white-50" style="border-top: 0.5px solid #232323;">
+                <div class="col-sm-3">
+                    <div class="d-flex align-items-center p-2">
+                            <div class="p-3">
+                                <img src="assets/imgs/search/image-1.jpeg" class="img-fluid" width="100px">
+                            </div>
+                            <div class="flex-column p-2">
+                                <p>Nome Canzone</p>
+                                <p>nome artista</p>
+                            </div>
+                        <i class="bi bi-heart p-2"></i>
+                    </div>
+                </div>
+    
+                <div class="col-sm-6">
+                    <div class="text-white align-items-center d-flex justify-content-center">
+                        <i class="bi bi-shuffle mx-1"></i>
+                        <i class="bi bi-skip-start-fill mx-1"></i>
+                        <i class="bi bi-play-circle-fill mx-1 fs-2"></i>
+                        <i class="bi bi-skip-end-fill mx-1"></i>
+                        <i class="bi bi-repeat mx-1"></i>
+                    </div>
+    
+                    <div class="progress-block mt-1 text-white d-flex justify-content-between align-items-center">
+                        <div class="mr-2">0:00</div>
+                        <div class="progress w-100">
+                        <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" class="progress-bar bg-success" role="progressbar" style="width: 25%"></div>
+                        </div>
+                        <div class="mr-2">2:59</div>
+                    </div>
+                </div>
+    
+                <div class="col-sm-3">
+                    <div class="d-flex justify-content-end p-2">
+                        <i class="bi bi-mic-fill mx-1"></i>
+                        <i class="bi bi-menu-app mx-1"></i>
+                        <i class="bi bi-pc-display mx-1"></i>
+                        <i class="bi bi-volume-down mx-1"></i>
+      
+                        <div class="progress-block mt-1 text-white d-flex justify-content-between align-items-center w-50">
+    
+                            <div class="progress w-100">
+                            <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" class="progress-bar bg-success" role="progressbar"></div>
+                            </div>
+                        </div>
+    
+                        <i class="bi bi-arrows-angle-expand mx-1"></i>
+                    </div>
+                </div>
+    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../bootstrap-5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
