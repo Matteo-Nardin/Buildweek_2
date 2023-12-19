@@ -50,6 +50,18 @@
   width: 90%;
 }
 
+.custom-shadow {
+  box-shadow: 0px 0px 6px 0px #303030;
+}
+
+.bg-2c {
+  background-color: #2c2c2c;
+}
+
+.mobile-shadow {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgb(0, 0, 0) 76%);
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }
