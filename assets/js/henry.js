@@ -45,16 +45,35 @@ if (location.pathname.split('/').pop() == 'artists.html') {
     document.addEventListener('DOMContentLoaded', () =>  {
         const urlparam = new URLSearchParams(location.search);
         const id= urlparam.get('id');
-        showArtist(412);
+        showArtist(454);
         
         document.querySelector('.songsArea').addEventListener('click', (e)=> {
             if(e.target.innerText == 'VISUALIZZA ALTRO') {
                 let h= parseInt(document.querySelector('.popolari').style.height);
                 document.querySelector('.popolari').style.height= h + h + 'px';
+                e.target.innerText == 'VISUALIZZA MENO'
+            } else if(e.target.innerText == 'VISUALIZZA MENO') {
+                let h= parseInt(document.querySelector('.popolari').style.height);
+                document.querySelector('.popolari').style.height= h - h + 'px';
+                e.target.innerText == 'VISUALIZZA ALTRO'
             }
         })
     });
 }
+
+
+let coda=[];
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('.songsArea').addEventListener('click', (e) => {
+        if (e.target.classList.contains('track')) {
+            coda.push(e.target.id);
+             localStorage.setItem('coda' , JSON.stringify(coda));
+         }
+     })
+ })
+
+
+
 
 
 
@@ -83,13 +102,13 @@ showAlbum = async (albumId) => {
             let track =  ` 
             <div class="d-none d-md-block col-md-1 text-center"> ${i+1} </div>
             <div class="col-11 col-md-5">
-                <p class="m-0 fw-bold">${brano.title}</p>
+                <p class="m-0 fw-bold ${brano.type}" id='${brano.id}'>${brano.title}</p>
                 <p class="text-white-50 m-0">${brano.artist.name}</p>
             </div>
             <div class="d-none d-md-block col-md-3 text-end">${brano.rank}</div>
             <div class="d-none d-md-block col-md-3 text-end"> ${Math.floor(brano.duration/60)} min ${brano.duration % 60} sec. </div>
             <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" class="col-1 d-md-none text-end"><i class="bi bi-three-dots-vertical"></i></a>`
-            document.querySelector('.tracklist').innerHTML += track;
+            document.querySelector('.songsArea').innerHTML += track;
         });
         document.querySelector('.albumArea').addEventListener('click', (e) => {
             if (e.target.innerText == res.artist.name) {
@@ -121,24 +140,31 @@ showArtist = async (artistId) => {
                 <p class="card-text d-none d-md-inline-block">${res.nb_fan}</p> <span class="d-none d-md-inline">ascoltatori mensili</span>
             </div>
         </div>`
+        
+        
         document.querySelector('.other').innerText = res.nb_fan;
         document.querySelector('.pfp').src = res.picture_small;
+        document.querySelector('.miPiace .artistName').innerText = res.name;
         fetch(res.tracklist, {method: 'GET'}).then(response => response.json()).then(json => {
             console.log(json);
+            coda.push(json);
+            localStorage.setItem('coda' , JSON.stringify(coda));
             json.data.forEach((obj, i) => {
-                let lista =`
-                <div class="col-11 col-md-6 d-flex align-items-center">
-                     <p class="me-3">${i+1}</p>
-                    <div class="ms-3 ">
-                        <p class="m-0">${obj.title}</p>
-                        <p class="m-0 text-white-50 d-md-none "> ${obj.rank}</p>
-                    </div>
-                    </div>
-                    <div class="col-md-3 d-none d-md-block text-white-50">${obj.rank}</div>
-                    <div class="col-md-3 d-none d-md-block text-center text-white-50"> ${Math.floor(obj.duration/60)} : ${obj.duration % 60}</div>
-                    <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" class="col-1 d-md-none text-end"><i class="bi bi-three-dots-vertical "></i></a>
-                </div>`
-                document.querySelector('.popolari').innerHTML +=lista;
+                if(i<10) {
+                    let lista =`
+                    <div class="col-11 col-md-6 d-flex align-items-center">
+                        <p class="me-3">${i+1}</p>
+                        <div class="ms-3 ">
+                            <p class="m-0 ${obj.type}" id='${obj.id}'>${obj.title}</p>
+                            <p class="m-0 text-white-50 d-md-none "> ${obj.rank}</p>
+                        </div>
+                        </div>
+                        <div class="col-md-3 d-none d-md-block text-white-50">${obj.rank}</div>
+                        <div class="col-md-2 d-none d-md-block text-center text-white-50"> ${Math.floor(obj.duration/60)} : ${obj.duration % 60}</div>
+                        <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" class="col-1 text-end"><i class="bi bi-three-dots"></i></a>
+                    </div>`
+                    document.querySelector('.popolari').innerHTML +=lista;
+                }
             })
         })
     } catch(error) {
