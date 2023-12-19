@@ -89,12 +89,12 @@ if (location.pathname.split('/').pop() == 'artists.html') {
 
 let audio= document.createElement('audio');
 let lcsong = JSON.parse(localStorage.getItem('song'));
-let lcsongs = JSON.parse(localStorage.getItem('songs'));
+
 let trackNo = 0;
 document.addEventListener('DOMContentLoaded', () => {
     if(localStorage.length>0) {
         document.querySelector('.playbar').classList.remove('d-none');
-        playBarSong(lcsong);
+       playBarSong(lcsong);
         audio.pause();
     };
 
@@ -111,24 +111,19 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.bi-heart-fill').classList.toggle('text-danger');
     });
     document.querySelector('.songsArea').addEventListener('click', (e) => {
-        // if (e.target.classList.contains('track')) {
-        //     // fetch(`https://striveschool-api.herokuapp.com/api/deezer/track/${e.target.id}`).then(response => response.json())
-        //     // .then(json => {
-        //     //     console.log(json);
-        //     //     localStorage.setItem('song', JSON.stringify(json));
-        //     //     playBarSong(JSON.parse(localStorage.getItem('song')));
-        //     //     document.querySelector('.playbar .bi-play-circle').classList.add('d-none');
-        //     //     document.querySelector('.playbar .bi-pause-circle').classList.remove('d-none');
-        //     //     audio.play();
-        //     // })
-        //     // .catch(console.error());
+        if (e.target.classList.contains('track')) {
+        fetch(`https://striveschool-api.herokuapp.com/api/deezer/track/${e.target.id}`).then(response => response.json())
+         .then(json => {
+           console.log(json);
+          localStorage.setItem('song', JSON.stringify(json));
+          playBarSong(JSON.parse(localStorage.getItem('song')));
+           document.querySelector('.playbar .bi-play-circle').classList.add('d-none');
+           document.querySelector('.playbar .bi-pause-circle').classList.remove('d-none');
+         audio.play();
+        })
+        .catch(console.error());
+    }
 
-        // }
-        localStorage.setItem('song', JSON.stringify(lcsongs.filter((ele, i) => ele.title == e.target.innerText)));
-        playBarSong(lcsong);
-        document.querySelector('.playbar .bi-play-circle').classList.add('d-none');
-        document.querySelector('.playbar .bi-pause-circle').classList.remove('d-none');
-        audio.play();
     })
  })
     
@@ -157,10 +152,6 @@ playBarSong = (obj) => {
             } else {
                 audio.loop = false;
             }
-        } else if (e.target.classList.contains('skip-end-fill')) {
-            let nextsong= lcsongs.findIndex(obj.title_short)+1;
-            localStorage.setItem('song', JSON.stringify(lcsongs.filter((ele, i) => i= nextsong)));
-            
         }
     })
     audio.addEventListener('timeupdate', () =>  {

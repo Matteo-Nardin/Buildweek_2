@@ -9,37 +9,38 @@
     <script src="assets/js/henry.js"></script>
 </head>
 <body>
-    <div class="container-fluid" style="height: 100vh;">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-md-3 d-none d-lg-flex flex-column bg-black">
+            <div class="col-sm-3 d-flex flex-column bg-black text-white-50">
                 <i class="bi bi-three-dots"></i>
 
                 <div class="mb-5">
-                    <div>
-                        <a><i class="bi bi-house-door-fill pe-3"></i>Home</a>
+                    <div class="mb-2">
+                        <a><i class="bi bi-house-door-fill fs-5 me-3"></i>Home</a>
                     </div>
-                    <div>
-                        <a id="searchAnchor"> <i class="bi bi-search pe-3" id="searchIcon"></i>Cerca</a>
+                    <div class="mb-2">
+                        <a><i class="bi bi-search fs-5 me-3"></i>Cerca</a>
                     </div>
-                    <div>
-                        <a><i class="bi bi-bookshelf pe-3"></i>La tua libreria</a>
+                    <div class="mb-2">
+                        <a><i class="bi bi-bookshelf fs-5 me-3"></i>La tua libreria</a>
                     </div>
                 </div>
 
                 <div>
-                    <div>
-                        <a><i class="bi bi-plus-square-fill"></i>Crea playlist</a>
+                    <div class="mb-2">
+                        <a><i class="bi bi-plus-square fs-10 me-3 plus"></i>Crea playlist</a>
                     </div>
-                    <div>
-                        <a><i class="bi bi-heart-fill fs-10 heart"></i>Brani che ti piacciono</a>
+                    <div class="mb-2">
+                        <a><i class="bi bi-heart-fill fs-10 me-3 heart"></i>Brani che ti piacciono</a>
                     </div>
-                    <div>
-                        <a><i class="bi bi-bookmark-fill"></i>I tuoi episodi</a>
+                    <div class="mb-2">
+                        <a><i class="bi bi-bookmark-fill fs-10 me-3 bookmark"></i>I tuoi episodi</a>
                     </div>
                 </div>
                 
+                <hr>
 
-                <div class="overflow-y-scroll bg-black" style="height: 58vh">
+                <div class="overflow-y-scroll bg-black fs-10" style="height: 43vh">
                     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deleniti provident, rerum et aliquid at fugiat iste eius. Vero dolore unde explicabo maiores quam consequuntur consequatur nam dolores facilis, ea earum.</p>
                     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deleniti provident, rerum et aliquid at fugiat iste eius. Vero dolore unde explicabo maiores quam consequuntur consequatur nam dolores facilis, ea earum.</p>
                     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deleniti provident, rerum et aliquid at fugiat iste eius. Vero dolore unde explicabo maiores quam consequuntur consequatur nam dolores facilis, ea earum.</p>
@@ -48,7 +49,7 @@
                     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deleniti provident, rerum et aliquid at fugiat iste eius. Vero dolore unde explicabo maiores quam consequuntur consequatur nam dolores facilis, ea earum.</p>
                 </div>
             </div>
-    
+
 
     
    
@@ -153,54 +154,61 @@
                     <p class="fw-bold text-uppercase text-white-50 more">visualizza altro</p>
                 </div>
             </div>
+            <div class="searchArea container d-none">
+                <form>
+                    <input type="text" id="searchInput" class="form-control" placeholder="Cerca...">
+                    <button type="submit" class="btn btn-primary mt-2">Cerca</button>
+                </form>
+                
+            </div>
                 <!-- ---------------TERZA COLONNA--------------- -->
-                <div class="d-none d-lg-flex flex-column col-md-2 bg-black">
+                <div class="col-md-2 d-md-flex d-none flex-column bg-black text-white-50">
                     <div class="d-flex justify-content-between p-2">
-                        <p>Attività amici</p>
+                        <p class="text-white">Attività amici</p>
                         <div>
                             <i class="bi bi-person-plus"></i>
                             <i class="bi bi-x"></i>
                         </div>
                     </div>
-
+    
                     <!-- -----------BOX AMICI-------------- -->
-                    <div class="d-flex ">
+                    <div class="d-flex my-2">
                         <div>
-                            <img src="assets/imgs/search/image-1.jpeg" class="img-fluid" width="20px">
+                            <img src="assets/imgs/search/image-1.jpeg" class="img-fluid rounded-circle" width="40px">
                         </div>
-                        <div class="flex-column p-2 fs-8">
-                            <p class="mb-0 fs-6">Nome Canzone</p>
+                        <div class="flex-column px-2 fs-10">
+                            <p class="mb-0 fs-8">Nome Canzone</p>
                             <p class="mb-0">nome artista</p>
                             <i class="bi bi-music-note-beamed me-2"></i><span>Nome artista</span> 
                         </div>
-                        <p class="fs-8">4 ore</p>
+                        <p class="fs-10">4 ore</p>
                     </div>
                     <div class="d-flex">
                         <div>
-                            <img src="assets/imgs/search/image-1.jpeg" class="img-fluid" width="20px">
+                            <img src="assets/imgs/search/image-1.jpeg" class="img-fluid rounded-circle" width="40px">
                         </div>
-                        <div class="flex-column p-2 fs-8">
-                            <p class="mb-0 fs-6">Nome Canzone</p>
+                        <div class="flex-column px-2 fs-10">
+                            <p class="mb-0 fs-8">Nome Canzone</p>
                             <p class="mb-0">nome artista</p>
                             <i class="bi bi-music-note-beamed me-2"></i><span>Nome artista</span> 
                         </div>
-                        <p class="fs-8">4 ore</p>
+                        <p class="fs-10">4 ore</p>
                     </div>
                     <div class="d-flex">
                         <div>
-                            <img src="assets/imgs/search/image-1.jpeg" class="img-fluid" width="20px">
+                            <img src="assets/imgs/search/image-1.jpeg" class="img-fluid rounded-circle" width="40px">
                         </div>
-                        <div class="flex-column p-2 fs-8">
-                            <p class="mb-0 fs-6">Nome Canzone</p>
+                        <div class="flex-column px-2 fs-10">
+                            <p class="mb-0 fs-8">Nome Canzone</p>
                             <p class="mb-0">nome artista</p>
                             <i class="bi bi-music-note-beamed me-2"></i><span>Nome artista</span> 
                         </div>
-                        <p class="fs-8">4 ore</p>
+                        <p class="fs-10">4 ore</p>
                     </div>
+    
+                    
                 </div>
             </div>
-        </div>
-    
 
     <!-- -------------------PLAY BAR INFERIORE--------------------------- -->
     <div class="playbar row fixed-bottom align-items-center bg-secondary-subtle container-fluid d-none">
