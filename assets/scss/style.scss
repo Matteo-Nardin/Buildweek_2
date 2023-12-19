@@ -21,7 +21,7 @@ $success: #1ed760;
 
 .custom{
     background: rgb(185,185,185);
-    background: linear-gradient(192deg, rgb(91 91 91 / 98%) 1%, rgb(0, 0, 0) 53%);
+    background: radial-gradient(ellipse at top right, rgb(91 91 91 / 98%) 1%, rgb(0, 0, 0) 60%);
 }
 #w-custom{
     width:90%;

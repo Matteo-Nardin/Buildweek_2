@@ -43,7 +43,7 @@
 
 .custom {
   background: rgb(185, 185, 185);
-  background: linear-gradient(192deg, rgba(91, 91, 91, 0.98) 1%, rgb(0, 0, 0) 53%);
+  background: radial-gradient(ellipse at top right, rgba(91, 91, 91, 0.98) 1%, rgb(0, 0, 0) 60%);
 }
 
 #w-custom {
