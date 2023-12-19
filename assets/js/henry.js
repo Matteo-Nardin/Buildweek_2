@@ -20,20 +20,9 @@ if (location.pathname.split('/').pop() == 'henry.html') {
         const urlparam = new URLSearchParams(location.search);
         const id= urlparam.get('id');
         showAlbum(75621062);
-        document.querySelector('.blah .bi-play-circle').addEventListener('click', () => {
-            document.querySelector('.blah .bi-pause-circle').classList.remove('d-none');
-            document.querySelector('.blah .bi-play-circle').classList.add('d-none');
-        });
-            
-        document.querySelector('.blah .bi-pause-circle').addEventListener('click', () => { 
-            document.querySelector('.blah .bi-pause-circle').classList.add('d-none');
-            document.querySelector('.blah .bi-play-circle').classList.remove('d-none');
-        });
-        document.querySelector('.blah .bi-heart-fill').addEventListener('click', () => { 
-            document.querySelector('.blah .bi-heart-fill').classList.toggle('text-danger');
-        });
-        document.querySelector('.blah .bi-arrow-down-circle').addEventListener('click', () => { 
-            document.querySelector('.blah .bi-arrow-down-circle').classList.toggle('text-success');
+        
+        document.querySelector('.bi-arrow-down-circle').addEventListener('click', () => { 
+            document.querySelector('.bi-arrow-down-circle').classList.toggle('text-success');
         });
         
     });
@@ -64,15 +53,54 @@ if (location.pathname.split('/').pop() == 'artists.html') {
 
 let coda=[];
 document.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('.bi-play-circle').addEventListener('click', () => {
+        document.querySelector('.bi-pause-circle').classList.remove('d-none');
+        document.querySelector('.bi-play-circle').classList.add('d-none');
+    });
+        
+    document.querySelector('.bi-pause-circle').addEventListener('click', () => { 
+        document.querySelector('.bi-pause-circle').classList.add('d-none');
+        document.querySelector('.bi-play-circle').classList.remove('d-none');
+    });
+    document.querySelector('.bi-heart-fill').addEventListener('click', () => { 
+        document.querySelector('.bi-heart-fill').classList.toggle('text-danger');
+    });
     document.querySelector('.songsArea').addEventListener('click', (e) => {
         if (e.target.classList.contains('track')) {
-            coda.push(e.target.id);
-             localStorage.setItem('coda' , JSON.stringify(coda));
-         }
+            fetch(`https://striveschool-api.herokuapp.com/api/deezer/track/${e.target.id}`).then(response => response.json())
+            .then(json => {
+                console.log(json)
+                playBar(json)
+            })
+            .catch(console.error());
+        }
      })
  })
 
+playBar = (obj) => {
+    document.querySelector('.playbar').classList.remove('d-none');
+    document.querySelector('.imageCover').src= obj.album.cover_small;
+    document.querySelector('.pbCanzone').innerText = obj.title_short;
+    document.querySelector('.pbArtista').innerText = obj.artist.name;
+    document.querySelector('.songLength').innerText = Math.floor(obj.duration/60) + ':'+ Math.floor(obj.duration % 60);
+    
 
+
+    let audio = document.createElement('audio');
+    audio.src = obj.preview;
+    audio.play();
+    
+    document.querySelectorAll('.bi-pause-circle').forEach(ele=> ele.addEventListener('click' , () => audio.pause()));
+    setTimeout(() => {
+        let count=1;
+        setInterval(() =>{
+            document.querySelector('.songTime').innerText = ++count;
+            document.querySelector('.progress div').style.width = +count +'%';
+        }, 1000);
+    }, obj.duration);
+        
+    
+}
 
 
 
@@ -100,7 +128,7 @@ showAlbum = async (albumId) => {
         document.querySelector('.albumNameArea').innerHTML += album;
         res.tracks.data.forEach((brano, i) => {
             let track =  ` 
-            <div class="d-none d-md-block col-md-1 text-center"> ${i+1} </div>
+            <div class="d-none d-md-block col-md-1 text-center cursor-pointer"> ${i+1} </div>
             <div class="col-11 col-md-5">
                 <p class="m-0 fw-bold ${brano.type}" id='${brano.id}'>${brano.title}</p>
                 <p class="text-white-50 m-0">${brano.artist.name}</p>
@@ -147,8 +175,8 @@ showArtist = async (artistId) => {
         document.querySelector('.miPiace .artistName').innerText = res.name;
         fetch(res.tracklist, {method: 'GET'}).then(response => response.json()).then(json => {
             console.log(json);
-            coda.push(json);
-            localStorage.setItem('coda' , JSON.stringify(coda));
+            // coda.push(json);
+            // localStorage.setItem('coda' , JSON.stringify(coda));
             json.data.forEach((obj, i) => {
                 if(i<10) {
                     let lista =`
