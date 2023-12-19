@@ -3,11 +3,47 @@
 
 
 if (location.pathname.split('/').pop() == 'index.html') {
-    document.addEventListener('DOMContentLoaded', () =>  {
+    
+    document.addEventListener('DOMContentLoaded', function() {
         document.querySelector(".saluto").innerText = saluto();
-        document.querySelector
+
+
+        const searchAnchor = document.querySelector('#searchAnchor');
+        const searchForm = document.createElement('div');
+        searchForm.id = 'searchForm';
+        searchForm.style.display = 'none'; // Inizialmente nascosto
+    
+        searchForm.innerHTML =` 
+            <form>
+                <input type="text" id="searchInput" class="form-control" placeholder="Cerca...">
+                <button type="submit" class="btn btn-primary mt-2">Cerca</button>
+            </form>`
+        ;
+    
+        // Aggiungi il form dopo l'ancora di ricerca
+        searchAnchor.parentNode.insertBefore(searchForm, searchAnchor.nextSibling);
+    
+        searchAnchor.addEventListener('click', function(event) {
+            event.preventDefault(); 
+    
+            // Mostra o nascondi il form di ricerca quando viene cliccato
+            if (searchForm.style.display === 'none') {
+                searchForm.style.display = 'block';
+            } else {
+                searchForm.style.display = 'none';
+            }
+        });
+    
+        // Gestisci la ricerca quando viene inviata
+        searchForm.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+    
+            const query = document.querySelector('#searchInput').value.trim();
+            // Esegui qui la logica per la ricerca utilizzando la query inserita
+            console.log('Ricerca per:', query);
+        });
     });
-    // Aggiungiamo il saluto a un elemento <h2> con id "saluto" (possiamo modificare anche dopo)
+    // Aggiungiamo il saluto a un elemento con id "saluto" (possiamo modificare anche dopo)
    
     
 }
@@ -20,20 +56,9 @@ if (location.pathname.split('/').pop() == 'henry.html') {
         const urlparam = new URLSearchParams(location.search);
         const id= urlparam.get('id');
         showAlbum(75621062);
-        document.querySelector('.blah .bi-play-circle').addEventListener('click', () => {
-            document.querySelector('.blah .bi-pause-circle').classList.remove('d-none');
-            document.querySelector('.blah .bi-play-circle').classList.add('d-none');
-        });
-            
-        document.querySelector('.blah .bi-pause-circle').addEventListener('click', () => { 
-            document.querySelector('.blah .bi-pause-circle').classList.add('d-none');
-            document.querySelector('.blah .bi-play-circle').classList.remove('d-none');
-        });
-        document.querySelector('.blah .bi-heart-fill').addEventListener('click', () => { 
-            document.querySelector('.blah .bi-heart-fill').classList.toggle('text-danger');
-        });
-        document.querySelector('.blah .bi-arrow-down-circle').addEventListener('click', () => { 
-            document.querySelector('.blah .bi-arrow-down-circle').classList.toggle('text-success');
+        
+        document.querySelector('.bi-arrow-down-circle').addEventListener('click', () => { 
+            document.querySelector('.bi-arrow-down-circle').classList.toggle('text-success');
         });
         
     });
@@ -55,24 +80,95 @@ if (location.pathname.split('/').pop() == 'artists.html') {
             } else if(e.target.innerText == 'VISUALIZZA MENO') {
                 let h= parseInt(document.querySelector('.popolari').style.height);
                 document.querySelector('.popolari').style.height= h - h + 'px';
-                e.target.innerText == 'VISUALIZZA ALTRO'
+                e.target.innerText == 'VISUALIZZA ALTRO';
             }
         })
     });
 }
 
 
-let coda=[];
+let audio= document.createElement('audio');
+let lcsong = JSON.parse(localStorage.getItem('song'));
+let lcsongs = JSON.parse(localStorage.getItem('songs'));
+let trackNo = 0;
 document.addEventListener('DOMContentLoaded', () => {
+    if(localStorage.length>0) {
+        document.querySelector('.playbar').classList.remove('d-none');
+        playBarSong(lcsong);
+        audio.pause();
+    };
+
+    document.querySelector('.bi-play-circle').addEventListener('click', () => {
+        document.querySelector('.bi-pause-circle').classList.remove('d-none');
+        document.querySelector('.bi-play-circle').classList.add('d-none');
+    });
+        
+    document.querySelector('.bi-pause-circle').addEventListener('click', () => { 
+        document.querySelector('.bi-pause-circle').classList.add('d-none');
+        document.querySelector('.bi-play-circle').classList.remove('d-none');
+    });
+    document.querySelector('.bi-heart-fill').addEventListener('click', () => { 
+        document.querySelector('.bi-heart-fill').classList.toggle('text-danger');
+    });
     document.querySelector('.songsArea').addEventListener('click', (e) => {
-        if (e.target.classList.contains('track')) {
-            coda.push(e.target.id);
-             localStorage.setItem('coda' , JSON.stringify(coda));
-         }
-     })
+        // if (e.target.classList.contains('track')) {
+        //     // fetch(`https://striveschool-api.herokuapp.com/api/deezer/track/${e.target.id}`).then(response => response.json())
+        //     // .then(json => {
+        //     //     console.log(json);
+        //     //     localStorage.setItem('song', JSON.stringify(json));
+        //     //     playBarSong(JSON.parse(localStorage.getItem('song')));
+        //     //     document.querySelector('.playbar .bi-play-circle').classList.add('d-none');
+        //     //     document.querySelector('.playbar .bi-pause-circle').classList.remove('d-none');
+        //     //     audio.play();
+        //     // })
+        //     // .catch(console.error());
+
+        // }
+        localStorage.setItem('song', JSON.stringify(lcsongs.filter((ele, i) => ele.title == e.target.innerText)));
+        playBarSong(lcsong);
+        document.querySelector('.playbar .bi-play-circle').classList.add('d-none');
+        document.querySelector('.playbar .bi-pause-circle').classList.remove('d-none');
+        audio.play();
+    })
  })
+    
 
+playBarSong = (obj) => {
+    audio.src='';
+    document.querySelector('.imageCover').src= obj.album.cover_small;
+    document.querySelector('.pbCanzone').innerText = obj.title_short;
+    document.querySelector('.pbArtista').innerText = obj.artist.name;
+    document.querySelector('.songLength').innerText = Math.floor(obj.duration/60) + ':'+ Math.floor(obj.duration % 60);
+    audio.src = obj.preview;
+    document.querySelector('.playbar').addEventListener('click' , (e) => {
+        if (e.target.classList.contains('bi-play-circle')) {
+            e.target.classList.add('d-none');
+            document.querySelector('.playbar .bi-pause-circle').classList.remove('d-none');
+            audio.play();
+        } else if (e.target.classList.contains('bi-pause-circle')) {
+            audio.pause();
+            e.target.classList.add('d-none');
+            document.querySelector('.playbar .bi-play-circle').classList.remove('d-none');
+        }
+        else if (e.target.classList.contains('bi-repeat')) {
+            e.target.classList.toggle('text-success');
+            if ( e.target.classList.contains('text-success')) {
+                audio.loop = true;
+            } else {
+                audio.loop = false;
+            }
+        } else if (e.target.classList.contains('skip-end-fill')) {
+            let nextsong= lcsongs.findIndex(obj.title_short)+1;
+            localStorage.setItem('song', JSON.stringify(lcsongs.filter((ele, i) => i= nextsong)));
+            
+        }
+    })
+    audio.addEventListener('timeupdate', () =>  {
+        document.querySelector('.songTime').innerText = '0:' + Math.floor(audio.currentTime);
+        document.querySelector('.progress div').style.width = audio.currentTime +'%';
+    })
 
+}
 
 
 
@@ -98,9 +194,10 @@ showAlbum = async (albumId) => {
             </div>
         </div>`    
         document.querySelector('.albumNameArea').innerHTML += album;
+        localStorage.setItem('songs' , JSON.stringify(res.tracks.data));
         res.tracks.data.forEach((brano, i) => {
             let track =  ` 
-            <div class="d-none d-md-block col-md-1 text-center"> ${i+1} </div>
+            <div class="d-none d-md-block col-md-1 text-center cursor-pointer"> ${i+1} </div>
             <div class="col-11 col-md-5">
                 <p class="m-0 fw-bold ${brano.type}" id='${brano.id}'>${brano.title}</p>
                 <p class="text-white-50 m-0">${brano.artist.name}</p>
@@ -145,10 +242,10 @@ showArtist = async (artistId) => {
         document.querySelector('.other').innerText = res.nb_fan;
         document.querySelector('.pfp').src = res.picture_small;
         document.querySelector('.miPiace .artistName').innerText = res.name;
+        
         fetch(res.tracklist, {method: 'GET'}).then(response => response.json()).then(json => {
             console.log(json);
-            coda.push(json);
-            localStorage.setItem('coda' , JSON.stringify(coda));
+            localStorage.setItem('songs' , JSON.stringify(json.data));
             json.data.forEach((obj, i) => {
                 if(i<10) {
                     let lista =`
