@@ -4,53 +4,51 @@
 
 if (location.pathname.split('/').pop() == 'index.html') {
     
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelector(".saluto").innerText = saluto();
+    // document.addEventListener('DOMContentLoaded', function() {
+    //     document.querySelector(".saluto").innerText = saluto();
 
 
-        const searchAnchor = document.querySelector('#searchAnchor');
-        const searchForm = document.createElement('div');
-        searchForm.id = 'searchForm';
-        searchForm.style.display = 'none'; // Inizialmente nascosto
+    //     const searchAnchor = document.querySelector('#searchAnchor');
+    //     const searchForm = document.createElement('div');
+    //     searchForm.id = 'searchForm';
+    //     searchForm.style.display = 'none'; // Inizialmente nascosto
     
-        searchForm.innerHTML =` 
-            <form>
-                <input type="text" id="searchInput" class="form-control" placeholder="Cerca...">
-                <button type="submit" class="btn btn-primary mt-2">Cerca</button>
-            </form>`
-        ;
+    //     searchForm.innerHTML =` 
+    //         <form>
+    //             <input type="text" id="searchInput" class="form-control" placeholder="Cerca...">
+    //             <button type="submit" class="btn btn-primary mt-2">Cerca</button>
+    //         </form>`
+    //     ;
     
-        // Aggiungi il form dopo l'ancora di ricerca
-        searchAnchor.parentNode.insertBefore(searchForm, searchAnchor.nextSibling);
+    //     // Aggiungi il form dopo l'ancora di ricerca
+    //     searchAnchor.parentNode.insertBefore(searchForm, searchAnchor.nextSibling);
     
-        searchAnchor.addEventListener('click', function(event) {
-            event.preventDefault(); 
+    //     searchAnchor.addEventListener('click', function(event) {
+    //         event.preventDefault(); 
     
-            // Mostra o nascondi il form di ricerca quando viene cliccato
-            if (searchForm.style.display === 'none') {
-                searchForm.style.display = 'block';
-            } else {
-                searchForm.style.display = 'none';
-            }
-        });
+    //         // Mostra o nascondi il form di ricerca quando viene cliccato
+    //         if (searchForm.style.display === 'none') {
+    //             searchForm.style.display = 'block';
+    //         } else {
+    //             searchForm.style.display = 'none';
+    //         }
+    //     });
     
-        // Gestisci la ricerca quando viene inviata
-        searchForm.querySelector('form').addEventListener('submit', function(event) {
-            event.preventDefault(); 
+    //     // Gestisci la ricerca quando viene inviata
+    //     searchForm.querySelector('form').addEventListener('submit', function(event) {
+    //         event.preventDefault(); 
     
-            const query = document.querySelector('#searchInput').value.trim();
-            // Esegui qui la logica per la ricerca utilizzando la query inserita
-            console.log('Ricerca per:', query);
-        });
-    });
+    //         const query = document.querySelector('#searchInput').value.trim();
+    //         // Esegui qui la logica per la ricerca utilizzando la query inserita
+    //         console.log('Ricerca per:', query);
+    //     });
+    // });
     // Aggiungiamo il saluto a un elemento con id "saluto" (possiamo modificare anche dopo)
    
     
 }
 
        
-       
-
 if (location.pathname.split('/').pop() == 'henry.html') {
     document.addEventListener('DOMContentLoaded', () =>  {
         const urlparam = new URLSearchParams(location.search);
@@ -285,3 +283,40 @@ saluto = () => {
         return "Buona sera";
     }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const searchAnchor = document.querySelector('#searchAnchor');
+    const searchForm = document.createElement('div');
+    searchForm.id = 'searchForm';
+    searchForm.style.display = 'none'; // Inizialmente nascosto
+
+    searchForm.innerHTML = `
+        <form>
+            <input type="text" id="searchInput" class="form-control" placeholder="Cerca...">
+            <button type="submit" class="btn btn-primary mt-2">Cerca</button>
+        </form>`
+    ;
+
+    // Aggiungi il form dopo l'ancora di ricerca
+    searchAnchor.parentNode.insertBefore(searchForm, searchAnchor.nextSibling);
+
+    searchAnchor.addEventListener('click', function(event) {
+        event.preventDefault(); 
+
+        // Mostra o nascondi il form di ricerca quando viene cliccato
+        if (searchForm.style.display === 'none') {
+            searchForm.style.display = 'block';
+        } else {
+            searchForm.style.display = 'none';
+        }
+    });
+
+    // Gestisci la ricerca quando viene inviata
+    searchForm.querySelector('form').addEventListener('submit', function(event) {
+        event.preventDefault(); 
+
+        const query = document.querySelector('#searchInput').value.trim();
+        // Esegui qui la logica per la ricerca utilizzando la query inserita
+        console.log('Ricerca per:', query);
+    });
+});
